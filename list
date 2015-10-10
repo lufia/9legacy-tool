@@ -1,0 +1,6 @@
+#!/bin/rc
+
+root=$home/9legacy
+pkg=$root/pkg
+
+ls -p $pkg

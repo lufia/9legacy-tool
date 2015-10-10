@@ -1,0 +1,16 @@
+#!/bin/rc
+
+rfork e
+
+root=$home/9legacy
+cache=$root/cache
+url=http://9legacy.org/9legacy/patch
+
+if(! ~ $#* 1){
+	echo usage: $0 name
+	exit usage
+}
+
+mkdir -p $cache
+if(! test -e $cache/$1.diff)
+	hget $url/$1.diff >$cache/$1.diff

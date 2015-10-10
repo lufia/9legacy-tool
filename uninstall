@@ -1,0 +1,39 @@
+#!/bin/rc
+
+rfork ne
+
+root=$home/9legacy
+plan9=$root/plan9
+pkg=$root/pkg
+
+if(! ~ $#* 1){
+	echo usage: `{basename $0} name >[2=1]
+	exit usage
+}
+
+if(! test -e $pkg/$1/$1.diff){
+	echo `{basename $0}: $1 is not installed >[2=1]
+	exit notinstalled
+}
+
+# depended by other patches.
+deps=`{ls -p $pkg/$1/*.dep >[2]/dev/null}
+for(p in $deps)
+	depended=($depended `{basename $p .dep})
+if(! ~ $#depended 0){
+	echo `{basename $0}: $1 depended by: $depended >[2=1]
+	exit used
+}
+
+fn sighup sigint sigterm {
+	unmount /n/sources/plan9
+	unmount /n/sources
+	unmount /sys
+	exit sig
+}
+aux/stub -d /n/sources/plan9
+bind /root /n/sources/plan9
+bind -c $plan9/sys /sys
+cd /
+ape/patch -p1 -R <$pkg/$1/$1.diff
+rm $pkg/$1/$1.diff $pkg/$1

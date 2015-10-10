@@ -1,0 +1,66 @@
+#!/bin/rc
+
+rfork ne
+
+root=$home/9legacy
+cache=$root/cache
+plan9=$root/plan9
+pkg=$root/pkg
+list=http://9legacy.org/patch.html
+
+if(! ~ $#* 1){
+	echo usage: `{basename $0} name >[2=1]
+	exit usage
+}
+
+if(test -f $pkg/$1/$1.diff){
+	echo `{basename $0}: $1 is installed >[2=1]
+	exit installed
+}
+
+fn depends {
+	hget $list |
+	9legacy/deps |
+	awk '$1 == "'$1'" {
+		for(i = 3; i <= NF; i++)
+			print $i
+	}'
+}
+
+deps=`{depends $1}
+required=()
+for(p in $deps){
+	if(! test -f $pkg/$p/$p.diff)
+		required=($required $p)
+}
+if(! ~ $#required 0){
+	echo `{basename $0}: $1 require to install: $required >[2=1]
+	exit deps
+}
+
+9legacy/cache $1
+files=`{sed -n 's!^\+\+\+ /([^ 	]+)[ 	].*!\1!p' $cache/$1.diff}
+dirs=()
+for(f in $files){
+	dir=`{basename -d $f}
+	if(! ~ $dir $dirs)
+		dirs=($dirs $dir)
+	mkdir -p $plan9/$dir
+	if(! test -e $plan9/$f && test -f /$f)
+		cp /$f $plan9/$f
+}
+
+mkdir -p $pkg/$1
+cp $cache/$1.diff $pkg/$1/$1.diff
+for(p in $deps){
+	touch $pkg/$p/$1.dep
+}
+
+fn sighup sigint sigterm {
+	unmount /sys
+	exit sig
+}
+bind -c $plan9/sys /sys
+cd /
+ape/patch -p1 <$pkg/$1/$1.diff
+unmount /sys
