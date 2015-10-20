@@ -6,7 +6,7 @@ root=$home/9legacy
 cache=$root/cache
 plan9=$root/plan9
 pkg=$root/pkg
-list=http://9legacy.org/patch.html
+list=$cache/patch.html
 
 if(! ~ $#* 1){
 	echo usage: `{basename $0} name >[2=1]
@@ -17,10 +17,13 @@ if(test -f $pkg/$1/$1.diff){
 	echo `{basename $0}: $1 is installed >[2=1]
 	exit installed
 }
+if(! test -f $list){
+	echo `{basename $0}: must run 9legacy/update once >[2=1]
+	exit update
+}
 
 fn depends {
-	hget $list |
-	9legacy/deps |
+	9legacy/deps $cache/patch.html |
 	awk '$1 == "'$1'" {
 		for(i = 3; i <= NF; i++)
 			print $i

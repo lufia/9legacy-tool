@@ -1,0 +1,9 @@
+#!/bin/rc
+
+rfork e
+
+root=$home/9legacy
+cache=$root/cache
+origin=http://9legacy.org/patch.html
+
+hget $origin >$cache/patch.html

@@ -7,6 +7,7 @@
 
 ## SYNOPSIS
 
+	9legacy/update
 	9legacy/install {patch-name}
 	9legacy/uninstall {patch-name}
 	9legacy/list
