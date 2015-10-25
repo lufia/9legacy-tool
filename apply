@@ -1,0 +1,30 @@
+#!/bin/rc
+
+rfork e
+
+root=$home/9legacy
+plan9=$root/plan9
+
+if(! test -d $plan9)
+	exit		# don't need to do
+
+cd $plan9 || exit
+a=`{du -a | sed 's/^[0-9]+[ 	]+//'}
+
+# directories found in original sources
+dirs=()
+for(dir in $a){
+	if(test -d /$dir)
+		dirs=($dirs $dir)
+}
+
+for(dir in $dirs) {
+	files=`{ls -F $dir | grep -v '/$'}
+	for(f in $files){
+		if(test -f /$f)
+			bind $f /$f
+	}
+
+	# new files and directories are presented by MAFTER.
+	bind -a $dir /$dir
+}
