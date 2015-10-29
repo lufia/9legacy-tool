@@ -33,7 +33,8 @@ fn sighup sigint sigterm {
 }
 aux/stub -d /n/sources/plan9
 bind /root /n/sources/plan9
-bind -c $plan9/sys /sys
+for(dir in `{ls -p $plan9})
+	bind -c $plan9/$dir /$dir
 cd /
 ape/patch -p1 -R <$pkg/$1/$1.diff
 rm $pkg/$1/$1.diff $pkg/$1

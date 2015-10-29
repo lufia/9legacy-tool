@@ -59,11 +59,8 @@ for(p in $deps){
 	touch $pkg/$p/$1.dep
 }
 
-fn sighup sigint sigterm {
-	unmount /sys
-	exit sig
-}
-bind -c $plan9/sys /sys
+for(dir in `{ls -p $plan9})
+	bind -c $plan9/$dir /$dir
 cd /
 ape/patch -p1 <$pkg/$1/$1.diff
 unmount /sys
