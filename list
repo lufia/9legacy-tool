@@ -3,4 +3,4 @@
 root=$home/9legacy
 pkg=$root/pkg
 
-ls -p $pkg
+ls -ptr $pkg

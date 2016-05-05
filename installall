@@ -1,0 +1,13 @@
+#!/bin/rc
+
+rfork e
+
+ifs='
+'
+cat $* | while(s=`{read}){
+	if(! 9legacy/list | grep -s '^'$s'$'){
+		echo installing $s >[1=2]
+		9legacy/install $s || exit
+	}
+}
+exit ''
