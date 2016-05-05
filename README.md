@@ -11,6 +11,7 @@
 	9legacy/install {patch-name}
 	9legacy/uninstall {patch-name}
 	9legacy/list
+	9legacy/installall [file...]
 
 	9legacy/cache {patch-name}
 	9legacy/deps
