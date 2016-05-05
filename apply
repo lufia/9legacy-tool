@@ -18,7 +18,7 @@ for(dir in $a){
 		dirs=($dirs $dir)
 }
 
-for(dir in $dirs) {
+for(dir in $dirs){
 	files=`{ls -F $dir | grep -v '/$'}
 	for(f in $files){
 		if(test -f /$f)
@@ -26,5 +26,5 @@ for(dir in $dirs) {
 	}
 
 	# new files and directories are presented by MAFTER.
-	bind -a $dir /$dir
+	bind -ac $dir /$dir
 }
