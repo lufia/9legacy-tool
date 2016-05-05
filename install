@@ -23,11 +23,11 @@ if(! test -f $list){
 }
 
 fn depends {
-	9legacy/deps $cache/patch.html |
-	awk '$1 == "'$1'" {
-		for(i = 3; i <= NF; i++)
-			print $i
-	}'
+	#9legacy/deps $cache/patch.html |
+	#awk '$1 == "'$1'" {
+	#	for(i = 3; i <= NF; i++)
+	#		print $i
+	#}'
 }
 
 deps=`{depends $1}
