@@ -42,7 +42,7 @@ if(! ~ $#required 0){
 }
 
 9legacy/cache $1 || exit cache
-files=`{sed -n 's!^\+\+\+ /([^ 	]+)[ 	].*!\1!p' $cache/$1.diff}
+files=`{sed -n 's!^\+\+\+ [ab]?/([^ 	]+)([ 	].*)?!\1!p' $cache/$1.diff}
 dirs=()
 for(f in $files){
 	dir=`{basename -d $f}
