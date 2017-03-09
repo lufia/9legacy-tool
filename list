@@ -3,4 +3,5 @@
 root=$home/9legacy
 pkg=$root/pkg
 
+# TODO: skip 0 byte patches
 ls -ptr $pkg
