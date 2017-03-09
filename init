@@ -1,0 +1,6 @@
+#!/bin/rc
+
+root=$home/9legacy
+pkg=$root/pkg
+
+mkdir -p $root/ ^ (cache pkg plan9)
