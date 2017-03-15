@@ -2,7 +2,7 @@
 
 rfork e
 
-root=$home/9legacy
+root=$home/lib/9legacy
 cache=$root/cache
 url=http://9legacy.org/9legacy/patch
 

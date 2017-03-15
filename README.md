@@ -25,11 +25,11 @@ It scrapes 9legacy.org, downloads patches, and updates sources indirectly.
 
 ## FILES
 
-* $home/9legacy - 9legacy-tool's working directory
+* $home/lib/9legacy - 9legacy-tool's working directory
 
 ## EXAMPLE
 
-These instructions installs all stable patches into $home/9legacy.
+These instructions installs all stable patches into $home/lib/9legacy.
 
 	# initialize working directory
 	% 9legacy/init
@@ -47,4 +47,4 @@ And `9legacy/apply` apply installed patches onto the system by constructing name
 ## BUGS
 
 After `9legacy/apply`, writing a new file to subdirectory just under the root will redirect to working directory.
-For example, writing a file to /amd64/init redirects to $home/9legacy/plan9/amd64/init.
+For example, writing a file to /amd64/init redirects to $home/lib/9legacy/plan9/amd64/init.

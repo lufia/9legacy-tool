@@ -2,7 +2,7 @@
 
 rfork e
 
-root=$home/9legacy
+root=$home/lib/9legacy
 plan9=$root/plan9
 
 if(! test -d $plan9)

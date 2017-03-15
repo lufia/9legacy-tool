@@ -1,6 +1,6 @@
 #!/bin/rc
 
-root=$home/9legacy
+root=$home/lib/9legacy
 cache=$root/cache
 p=$cache/patch.html
 
