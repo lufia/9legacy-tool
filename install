@@ -2,6 +2,8 @@
 
 rfork ne
 
+flag e +
+
 root=$home/lib/9legacy
 cache=$root/cache
 plan9=$root/plan9
@@ -59,6 +61,7 @@ for(p in $deps){
 	touch $pkg/$p/$1.dep
 }
 
+bind -ac $plan9 /
 for(dir in `{ls -p $plan9})
 	bind -c $plan9/$dir /$dir
 cd /
