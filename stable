@@ -5,4 +5,5 @@ cache=$root/cache
 p=$cache/patch.html
 
 9legacy/update || exit
-sed -n '/Stable patches/,/<\/table>/s/.*\.diff">([^<]+)<.*/\1/p' $p
+sed -n '/Stable patches/,/<\/table>/s/.*\.diff">([^<]+)<.*/\1/p' $p |
+sed 's/^winbond$/pc-&/'
