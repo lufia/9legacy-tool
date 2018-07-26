@@ -47,7 +47,7 @@ if(! ~ $#required 0){
 files=`{sed -n 's!^\+\+\+ [ab]?/([^ 	]+)([ 	].*)?!\1!p' $cache/$1.diff}
 if(~ amd64/include/ape/_apetypes.h $files)
 	for(a in arm sparc power 386 spim mips){
-		files=($files /$a/include/ape/_apetypes.h)
+		files=($files $a/include/ape/_apetypes.h)
 		mkdir -p $plan9/$a/include/ape
 		touch $plan9/$a/include/ape/_apetypes.h
 	}
