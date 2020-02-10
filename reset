@@ -1,0 +1,6 @@
+#!/bin/rc
+
+root=$home/lib/9legacy
+
+rm -r $root/ ^ (cache pkg plan9)
+9legacy/init
