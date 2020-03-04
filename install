@@ -71,5 +71,5 @@ bind -ac $plan9 /
 for(dir in `{ls -p $plan9})
 	bind -c $plan9/$dir /$dir
 cd /
-ape/patch -p1 -t <$pkg/$1/$1.diff
+ape/patch -p1 -t --no-backup-if-mismatch <$pkg/$1/$1.diff
 unmount /sys

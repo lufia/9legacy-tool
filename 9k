@@ -1,0 +1,8 @@
+#!/bin/rc
+
+root=$home/lib/9legacy
+cache=$root/cache
+p=$cache/patch.html
+
+9legacy/update || exit
+sed -n '/9k kernel from/,/<\/table>/s/.*\.diff">([^<]+)<.*/\1/p' $p
