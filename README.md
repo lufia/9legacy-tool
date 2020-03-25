@@ -6,17 +6,18 @@
 
 ## SYNOPSIS
 
-	9legacy/init
-	9legacy/update
-	9legacy/install {patch-name}
-	9legacy/uninstall {patch-name}
-	9legacy/list
-	9legacy/installall [file...]
-	9legacy/stable
+	9legacy/init [-r root]
+	9legacy/update [-r root]
+	9legacy/install [-r root] {patch-name}
+	9legacy/uninstall [-r root] {patch-name}
+	9legacy/list [-r root]
+	9legacy/installall [-r root] [file...]
+	9legacy/stable [-r root]
+	9legacy/9k [-r root]
 
-	9legacy/apply
+	9legacy/apply [-r root]
 
-	9legacy/cache {patch-name}
+	9legacy/cache [-r root] {patch-name}
 
 ## DESCRIPTION
 
