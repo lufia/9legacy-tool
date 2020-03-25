@@ -51,7 +51,7 @@ if(! ~ $#required 0){
 	exit deps
 }
 
-9legacy/cache $1 || exit cache
+9legacy/cache -r $root $1 || exit cache
 files=`{sed -n 's!^\+\+\+ [ab]?/([^ 	]+)([ 	].*)?!\1!p' $cache/$1.diff}
 if(~ amd64/include/ape/_apetypes.h $files)
 	for(a in arm sparc power 386 spim mips){

@@ -10,4 +10,4 @@ if(~ $#flagr 1)
 	root=$flagr
 
 rm -r $root/ ^ (pkg plan9)
-9legacy/init
+9legacy/init -r $root

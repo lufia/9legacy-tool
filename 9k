@@ -11,5 +11,5 @@ if(~ $#flagr 1)
 cache=$root/cache
 p=$cache/patch.html
 
-9legacy/update || exit
+9legacy/update -r $root || exit
 sed -n '/9k kernel from/,/<\/table>/s/.*\.diff">([^<]+)<.*/\1/p' $p

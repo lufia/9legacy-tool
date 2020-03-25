@@ -14,7 +14,7 @@ if(~ $#flagr 1)
 ifs='
 '
 cat $* | while(s=`{read}){
-	if(! 9legacy/list | grep -s '^'$s'$'){
+	if(! 9legacy/list $opts | grep -s '^'$s'$'){
 		echo installing $s >[1=2]
 		9legacy/install $opts $s || exit
 	}
