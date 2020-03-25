@@ -5,6 +5,14 @@ rfork ne
 flag e +
 
 root=$home/lib/9legacy
+flagfmt='r root'
+args='patch-name'
+if(! ifs=() eval `{aux/getflags $*}){
+	aux/usage
+	exit usage
+}
+if(~ $#flagr)
+	root=$flagr
 cache=$root/cache
 plan9=$root/plan9
 pkg=$root/pkg

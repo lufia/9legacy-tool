@@ -1,6 +1,13 @@
 #!/bin/rc
 
 root=$home/lib/9legacy
+flagfmt='r root'
+if(! ifs=() eval `{aux/getflags $*}){
+	aux/usage
+	exit usage
+}
+if(~ $#flagr)
+	root=$flagr
 pkg=$root/pkg
 
 # TODO: skip 0 byte patches

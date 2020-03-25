@@ -3,6 +3,13 @@
 rfork e
 
 root=$home/lib/9legacy
+flagfmt='r root'
+if(! ifs=() eval `{aux/getflags $*}){
+	aux/usage
+	exit usage
+}
+if(~ $#flagr)
+	root=$flagr
 cache=$root/cache
 origin=http://9legacy.org/patch.html
 

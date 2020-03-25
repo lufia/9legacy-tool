@@ -3,6 +3,13 @@
 rfork e
 
 root=$home/lib/9legacy
+flagfmt='r root'
+if(! ifs=() eval `{aux/getflags $*}){
+	aux/usage
+	exit usage
+}
+if(~ $#flagr)
+	root=$flagr
 plan9=$root/plan9
 
 if(! test -d $plan9)
