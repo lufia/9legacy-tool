@@ -8,7 +8,7 @@ if(! ifs=() eval `{aux/getflags $*}){
 	aux/usage
 	exit usage
 }
-if(~ $#flagr)
+if(~ $#flagr 1)
 	root=$flagr
 plan9=$root/plan9
 

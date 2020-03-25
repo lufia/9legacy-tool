@@ -8,7 +8,7 @@ if(! ifs=() eval `{aux/getflags $*}){
 	aux/usage
 	exit usage
 }
-if(~ $#flagr)
+if(~ $#flagr 1)
 	root=$flagr
 cache=$root/cache
 origin=http://9legacy.org/patch.html

@@ -6,7 +6,7 @@ if(! ifs=() eval `{aux/getflags $*}){
 	aux/usage
 	exit usage
 }
-if(~ $#flagr)
+if(~ $#flagr 1)
 	root=$flagr
 cache=$root/cache
 p=$cache/patch.html
