@@ -13,4 +13,4 @@ if(~ $#flagr 1)
 cache=$root/cache
 origin=http://9legacy.org/patch.html
 
-hget $origin >$cache/patch.html
+9legacy/_get $origin >$cache/patch.html

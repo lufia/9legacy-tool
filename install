@@ -75,9 +75,5 @@ for(p in $deps){
 	touch $pkg/$p/$1.dep
 }
 
-bind -ac $plan9 /
-for(dir in `{ls -p $plan9})
-	bind -c $plan9/$dir /$dir
-cd /
+cd $plan9
 ape/patch -p1 -t --no-backup-if-mismatch <$pkg/$1/$1.diff
-unmount /sys

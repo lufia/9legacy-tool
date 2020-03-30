@@ -21,7 +21,7 @@ if(! ~ $#* 1){
 mkdir -p $cache
 if(test -s $cache/$1.diff)
 	exit ''
-if(! hget $url/$1.diff >$cache/$1.diff){
+if(! 9legacy/_get $url/$1.diff >$cache/$1.diff){
 	rm -f $cache/$1.diff
 	exit fetch
 }
