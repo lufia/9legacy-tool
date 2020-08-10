@@ -74,7 +74,7 @@ for(f in $files){
 
 cd $plan9
 if(test -x /bin/git){
-	fn apply { git '--git-dir=' apply '--whitespace=nowarn' $* }
+	fn apply { git '--git-dir=' apply '--whitespace=nowarn' --recount $* }
 	apply --check -p1 <$cache/$1.diff || exit check
 }
 if not
