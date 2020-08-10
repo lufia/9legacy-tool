@@ -69,11 +69,18 @@ for(f in $files){
 		cp /$f $plan9/$f
 }
 
+cd $plan9
+if(test -x /bin/git){
+	fn apply { git '--git-dir=' apply '--whitespace=nowarn' $* }
+	apply --check -p1 <$pkg/$1/$1.diff
+}
+if not
+	fn apply { ape/patch -t --no-backup-if-mismatch $* }
+
 mkdir -p $pkg/$1
 cp $cache/$1.diff $pkg/$1/$1.diff
 for(p in $deps){
 	touch $pkg/$p/$1.dep
 }
 
-cd $plan9
-ape/patch -p1 -t --no-backup-if-mismatch <$pkg/$1/$1.diff
+apply -p1 <$pkg/$1/$1.diff

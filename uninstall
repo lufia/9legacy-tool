@@ -30,7 +30,7 @@ for(p in $deps)
 	depended=($depended `{basename $p .dep})
 if(! ~ $#depended 0){
 	echo `{basename $0}: $1 depended by: $depended >[2=1]
-	exit used
+	exit deps
 }
 
 fn sighup sigint sigterm {
@@ -44,5 +44,9 @@ bind /root /n/sources/plan9
 for(dir in `{ls -p $plan9})
 	bind -c $plan9/$dir /$dir
 cd /
-ape/patch -p1 -t -R --no-backup-if-mismatch <$pkg/$1/$1.diff
+if(test -x /bin/git)
+	fn apply { git '--git-dir=' apply --whitespace=nowarn $* }
+if not
+	fn apply { ape/patch -t --no-backup-if-mismatch $* }
+apply -p1 -R <$pkg/$1/$1.diff
 rm $pkg/$1/$1.diff $pkg/$1
