@@ -2,21 +2,23 @@
 
 rfork e
 
-flagfmt='r root'
+flagfmt='n,r root'
 args='patch-name'
 if(! ifs=() eval `{aux/getflags $*}){
 	aux/usage
 	exit usage
 }
 if(~ $#flagr 1)
-	opts=(-r $flagr)
+	optr=(-r $flagr)
+if(~ $#flagn 1)
+	optn=(-n)
 
 ifs='
 '
 cat $* | while(s=`{read}){
 	if(! 9legacy/list $opts | grep -s '^'$s'$'){
 		echo installing $s >[1=2]
-		9legacy/install $opts $s || exit
+		9legacy/install $optr $optn $s || exit
 	}
 }
 exit ''

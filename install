@@ -5,7 +5,7 @@ rfork ne
 flag e +
 
 root=$home/lib/9legacy
-flagfmt='r root'
+flagfmt='n,r root'
 args='patch-name'
 if(! ifs=() eval `{aux/getflags $*}){
 	aux/usage
@@ -65,14 +65,17 @@ for(f in $files){
 	if(! ~ $dir $dirs)
 		dirs=($dirs $dir)
 	mkdir -p $plan9/$dir
-	if(! test -e $plan9/$f && test -f /$f)
+	# We should copy an original file before applying a patch.
+	# However the files on / could be updated, so it might not be able to appropriate.
+	# For this, 9legacy/install -n option disables this copying.
+	if(~ $#flagn 0 && ! test -e $plan9/$f && test -f /$f)
 		cp /$f $plan9/$f
 }
 
 cd $plan9
 if(test -x /bin/git){
 	fn apply { git '--git-dir=' apply '--whitespace=nowarn' $* }
-	apply --check -p1 <$pkg/$1/$1.diff
+	apply --check -p1 <$cache/$1.diff || exit check
 }
 if not
 	fn apply { ape/patch -t --no-backup-if-mismatch $* }
