@@ -44,9 +44,6 @@ bind /root /n/sources/plan9
 for(dir in `{ls -p $plan9})
 	bind -c $plan9/$dir /$dir
 cd /
-if(test -x /bin/git)
-	fn apply { git '--git-dir=' apply --whitespace=nowarn --recount $* }
-if not
-	fn apply { ape/patch -t --no-backup-if-mismatch $* }
+fn apply { ape/patch -t --no-backup-if-mismatch $* }
 apply -p1 -R <$pkg/$1/$1.diff
 rm $pkg/$1/$1.diff $pkg/$1
