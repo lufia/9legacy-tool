@@ -1,0 +1,22 @@
+#!/bin/awk -f
+
+/^[^-+ ]/ || $1 == "---" || $1 == "+++" {
+	h[++n] = $0
+	if($0 ~ /^diff /)
+		diff = $0
+	else if($1 == "---")
+		old = $2
+	else if($1 == "+++")
+		new = $2
+	else if($1 == "@@"){
+		if(diff == "")
+			printf "diff -Nru %s %s\n", old, new
+		for(i = 1; i <= n; i++)
+			print h[i]
+		diff = ""
+		n = 0
+	}
+	next
+}
+{	print
+}
