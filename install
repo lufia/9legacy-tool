@@ -74,11 +74,13 @@ for(f in $files){
 
 cd $plan9
 if(test -x /bin/git){
-	fn apply { git '--git-dir=' apply '--whitespace=nowarn' --recount -v $* }
-	apply --check -p1 <$cache/$1.diff || exit check
+	fn apply { git '--git-dir=' apply '--whitespace=nowarn' --recount $* }
+	apply -v --check -p1 <$cache/$1.diff || exit check
 }
-if not
+if not{
 	fn apply { ape/patch -t --no-backup-if-mismatch $* }
+	apply --dry-run -p1 <$cache/$1.diff || exit check
+}
 
 mkdir -p $pkg/$1
 cp $cache/$1.diff $pkg/$1/$1.diff
