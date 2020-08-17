@@ -1,5 +1,9 @@
 #!/bin/awk -f
 
+# There is a few patches that unchanged lines are beginning with '\t'.
+/^\t/ {
+	$0 = " " $0
+}
 /^[^-+ @]/ || $1 == "---" || $1 == "+++" {
 	h[++n] = $0
 	if($0 ~ /^diff /)

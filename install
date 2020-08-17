@@ -5,7 +5,7 @@ rfork ne
 flag e +
 
 root=$home/lib/9legacy
-flagfmt='n,r root'
+flagfmt='f,n,r root'
 args='patch-name'
 if(! ifs=() eval `{aux/getflags $*}){
 	aux/usage
@@ -76,7 +76,8 @@ cd $plan9
 fn apply {
 	ape/patch -t --no-backup-if-mismatch $*
 }
-apply --dry-run -p1 <$cache/$1.diff || exit check
+if(~ $#flagf 0)
+	apply --dry-run -p1 <$cache/$1.diff || exit check
 
 mkdir -p $pkg/$1
 cp $cache/$1.diff $pkg/$1/$1.diff
