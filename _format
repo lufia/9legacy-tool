@@ -1,5 +1,11 @@
 #!/bin/awk -f
 
+/^\t/ {
+	# Fix broken patches: some patches are broken.
+	# They have a line that don't start with a space beginning of a line.
+	# ex. 9-machsmap, pc-conf-wifi-virtio
+	$0 = " " $0
+}
 /^[^-+ @]/ || $1 == "---" || $1 == "+++" {
 	h[++n] = $0
 	if($0 ~ /^diff /)
