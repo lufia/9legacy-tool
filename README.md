@@ -8,10 +8,10 @@
 
 	9legacy/init [-r root]
 	9legacy/update [-r root]
-	9legacy/install [-r root] {patch-name}
+	9legacy/install [-fn] [-r root] {patch-name}
 	9legacy/uninstall [-r root] {patch-name}
 	9legacy/list [-r root]
-	9legacy/installall [-r root] [file...]
+	9legacy/installall [-n] [-r root] [file...]
 	9legacy/stable [-r root]
 	9legacy/9k [-r root]
 
