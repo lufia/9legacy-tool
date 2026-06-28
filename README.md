@@ -1,5 +1,7 @@
 # manage 9legacy patches
 
+We recommend to use the **stable** branch of [lufia/plan9](https://github.com/lufia/plan9) instead.
+
 ## INSTALL
 
 	chmod +x apply cache init install installall list stable uninstall update
